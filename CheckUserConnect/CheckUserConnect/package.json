@@ -1,0 +1,9 @@
+{
+  "name": "check-user-connect",
+  "version": "0.0.0",
+  "description": "CheckUserConnect",
+  "main": "app.js",
+  "author": {
+    "name": "ARP"
+  }
+}
