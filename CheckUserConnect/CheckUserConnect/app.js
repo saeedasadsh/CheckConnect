@@ -58,7 +58,7 @@ try {
             var myData = {
                 playerId: playerId, apiKey: apiKey, socket: socket, appId: appId
             };
-
+            console.log();
             if (Players[appId] == undefined) {
                 console.log("1");
                 Players[appId] = { players: [] };
@@ -66,6 +66,8 @@ try {
                 var data = {
                     result: "1"
                 };
+                console.log(data);
+                console.log(JSON.stringify(data));
                 socket.write(JSON.stringify(data));
             }
             else
@@ -101,7 +103,7 @@ try {
         });
 
         socket.on('disconnect', function (data) {
-
+            console.log("disconnect: " + playerId);
         });
 
     });
