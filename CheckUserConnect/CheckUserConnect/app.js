@@ -38,10 +38,15 @@ try {
                 data = new Buffer(data).toString('utf8');
             }
 
+            console.log(data);
+
             var dt = JSON.parse(data);
             var playerId = dt.playerId;
             var apiKey = dt.apiKey;
             var appId = "";
+            console.log(playerId);
+            console.log(apiKey);
+
             var query = "select id from apps where apiKey= '" + apiKey+"'";
             con.query(query, function (err, result, fields) {
                 if (err) throw err;
@@ -49,13 +54,13 @@ try {
                     appId = row.appId;
                 });
             });
-
+            console.log(appId);
             var myData = {
                 playerId: playerId, apiKey: apiKey, socket: socket, appId: appId
             };
 
             if (Players[appId] == undefined) {
-
+                console.log("1");
                 Players[appId] = { players: [] };
                 Players[appId].players[playerId] = myData;
                 var data = {
@@ -66,6 +71,7 @@ try {
             else
             {
                 if (Players[appId].players[playerId] == undefined) {
+                    console.log("2");
                     Players[appId].players[playerId] = myData;
                     var data = {
                         result: "1"
@@ -74,6 +80,7 @@ try {
                 }
                 else
                 {
+                    console.log("3");
                     if (Players[appId].players[playerId].socket == undefined) {
                         Players[appId].players[playerId] = myData;
                         var data = {
@@ -83,6 +90,7 @@ try {
                     }
                     else
                     {
+                        console.log("4");
                         var data = {
                             result: "3"
                         };
