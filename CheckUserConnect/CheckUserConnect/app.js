@@ -51,12 +51,15 @@ try {
              appId = "";
 
             if (knd == "Add") {
-                var query = "select id from apps where apiKey= '" + apiKey + "'";
+                var query = "select id from apps where apiKey= '" + apiKey + "';";
                 console.log("query: " + query);
                 con.query(query, function (err, result, fields) {
-                    if (err) throw err;
+                    if (err) {
+                        console.log("err: " + err);
+                    };
                     result.forEach((row) => {
-                        appId = row.appId;
+                        console.log("row.id: " + row.id);
+                        appId = row.id;
                     });
                 });
 
