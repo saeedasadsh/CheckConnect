@@ -32,10 +32,10 @@ try {
     server.on('connection', function (socket) {
         console.log('CONNECTED: ' + socket.remoteAddress + ':' + socket.remotePort);
         var myId = -1;
-        var playerId = dt.playerId;
-        var apiKey = dt.apiKey;
-        var knd = dt.kind;
-        var dui = dt.dui;
+        var playerId = "";
+        var apiKey = "";
+        var knd = "";
+        var dui = "";
         var appId = "";
 
         socket.on('data', function (data) {
