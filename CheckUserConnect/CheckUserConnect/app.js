@@ -60,7 +60,7 @@ try {
                 var myData = {
                     playerId: playerId, apiKey: apiKey, socket: socket, appId: appId, alive: Date.now(),dui:dui
                 };
-                console.log();
+                console.log(Players[appId]);
                 if (Players[appId] == undefined) {
                     console.log("1");
                     Players[appId] = { players: [] };
