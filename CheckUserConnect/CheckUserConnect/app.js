@@ -123,13 +123,17 @@ try {
         });
 
         socket.on('disconnect', function (data) {
-            delete Players[appId].players[playerId];
+            if (Players[appId].players[playerId].dui == dui) {
+                delete Players[appId].players[playerId];
+            }
             console.log("disconnect in dis: " + playerId);
         });
 
         socket.on('close', function (data) {
             try {
-                delete Players[appId].players[playerId];
+                if (Players[appId].players[playerId].dui == dui) {
+                    delete Players[appId].players[playerId];
+                }
                 console.log("disconnect in close: " + playerId);
             }
             catch (e) {
