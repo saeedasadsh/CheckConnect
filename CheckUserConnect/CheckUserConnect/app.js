@@ -59,6 +59,7 @@ try {
                     });
                 });
 
+                console.log("appId: "+appId);
                 var myData = {
                     playerId: playerId, apiKey: apiKey, socket: socket, appId: appId, alive: Date.now(), dui: dui
                 };
@@ -67,7 +68,7 @@ try {
                     Players[appId] = { players: [] };
                     Players[appId].players[playerId] = myData;
                     var data = {
-                        result: "1"
+                        result: "1", Meskind: "Add"
                     };
                     socket.write(JSON.stringify(data) + "\n");
                 }
@@ -75,7 +76,7 @@ try {
                     if (Players[appId].players[playerId] == undefined) {
                         Players[appId].players[playerId] = myData;
                         var data = {
-                            result: "1"
+                            result: "1", Meskind: "Add"
                         };
                         socket.write(JSON.stringify(data) + "\n");
                     }
@@ -83,21 +84,22 @@ try {
                         if (Players[appId].players[playerId].socket == undefined) {
                             Players[appId].players[playerId] = myData;
                             var data = {
-                                result: "1"
+                                result: "1", Meskind: "Add"
                             };
                             socket.write(JSON.stringify(data) + "\n");
                         }
                         else {
                             if (Players[appId].players[playerId].dui != dui) {
                                 var data = {
-                                    result: "3"
+                                    result: "3", Meskind: "Add"
                                 };
                                 socket.write(JSON.stringify(data) + "\n");
                             }
                             else {
                                 Players[appId].players[playerId] = myData;
                                 var data = {
-                                    result: "1"
+                                    result: "1", Meskind: "Add"
+                                    
                                 };
                                 socket.write(JSON.stringify(data) + "\n");
                             }
@@ -109,13 +111,7 @@ try {
                 var data = {
                     alive: true, Meskind: "Alive"
                 };
-                for (var j = 0; j < pkgs.length; j++) {
-                    if (Players[appId] != undefined) {
-                        if (Players[appId].players[playerId] != undefined) {
-                            Players[appId].players[playerId].alive = Date.now();
-                        }
-                    }
-                }
+
                 socket.write(JSON.stringify(data) + "\n");
             }
             else
