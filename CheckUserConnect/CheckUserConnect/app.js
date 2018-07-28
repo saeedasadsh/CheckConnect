@@ -32,6 +32,11 @@ try {
     server.on('connection', function (socket) {
         console.log('CONNECTED: ' + socket.remoteAddress + ':' + socket.remotePort);
         var myId = -1;
+        var playerId = dt.playerId;
+        var apiKey = dt.apiKey;
+        var knd = dt.kind;
+        var dui = dt.dui;
+        var appId = "";
 
         socket.on('data', function (data) {
             if (data && data.byteLength != undefined) {
@@ -41,14 +46,12 @@ try {
             console.log(data);
 
             var dt = JSON.parse(data);
-            var playerId = dt.playerId;
-            var apiKey = dt.apiKey;
-            var knd = dt.kind;
-            var dui = dt.dui;
-            var appId = "";
-            console.log(playerId);
-            console.log(apiKey);
-            console.log(knd);
+             playerId = dt.playerId;
+             apiKey = dt.apiKey;
+             knd = dt.kind;
+             dui = dt.dui;
+             appId = "";
+
             if (knd == "Add") {
                 var query = "select id from apps where apiKey= '" + apiKey + "'";
                 con.query(query, function (err, result, fields) {
@@ -57,7 +60,7 @@ try {
                         appId = row.appId;
                     });
                 });
-                console.log(appId);
+
                 var myData = {
                     playerId: playerId, apiKey: apiKey, socket: socket, appId: appId, alive: Date.now(), dui: dui
                 };
