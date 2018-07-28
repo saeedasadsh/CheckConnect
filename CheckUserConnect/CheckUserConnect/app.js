@@ -48,6 +48,7 @@ try {
             var appId = "";
             console.log(playerId);
             console.log(apiKey);
+            console.log(knd);
             if (knd == "add") {
                 var query = "select id from apps where apiKey= '" + apiKey + "'";
                 con.query(query, function (err, result, fields) {
