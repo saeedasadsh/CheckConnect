@@ -58,7 +58,7 @@ try {
                 });
                 console.log(appId);
                 var myData = {
-                    playerId: playerId, apiKey: apiKey, socket: socket, appId: appId, alive: Date.now(),dui:dui
+                    playerId: playerId, apiKey: apiKey, socket: socket, appId: appId, alive: Date.now(), dui: dui
                 };
                 console.log(Players[appId]);
                 if (Players[appId] == undefined) {
@@ -98,8 +98,7 @@ try {
                                 };
                                 socket.write(JSON.stringify(data) + "\n");
                             }
-                            else
-                            {
+                            else {
                                 Players[appId].players[playerId] = myData;
                                 var data = {
                                     result: "1"
@@ -116,12 +115,16 @@ try {
                 };
                 for (var j = 0; j < pkgs.length; j++) {
                     if (Players[appId] != undefined) {
-                        if (Players[appId].players[playerId]  != undefined) {
+                        if (Players[appId].players[playerId] != undefined) {
                             Players[appId].players[playerId].alive = Date.now();
                         }
                     }
                 }
                 socket.write(JSON.stringify(data) + "\n");
+            }
+            else
+            {
+                socket.destroy();
             }
         });
 
