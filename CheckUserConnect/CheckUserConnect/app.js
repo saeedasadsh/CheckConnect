@@ -43,8 +43,6 @@ try {
                 data = new Buffer(data).toString('utf8');
             }
 
-            console.log(data);
-
             var dt = JSON.parse(data);
              playerId = dt.playerId;
              apiKey = dt.apiKey;
@@ -64,21 +62,17 @@ try {
                 var myData = {
                     playerId: playerId, apiKey: apiKey, socket: socket, appId: appId, alive: Date.now(), dui: dui
                 };
-                console.log(Players[appId]);
+
                 if (Players[appId] == undefined) {
-                    console.log("1");
                     Players[appId] = { players: [] };
                     Players[appId].players[playerId] = myData;
                     var data = {
                         result: "1"
                     };
-                    console.log(data);
-
                     socket.write(JSON.stringify(data) + "\n");
                 }
                 else {
                     if (Players[appId].players[playerId] == undefined) {
-                        console.log("2");
                         Players[appId].players[playerId] = myData;
                         var data = {
                             result: "1"
@@ -86,7 +80,6 @@ try {
                         socket.write(JSON.stringify(data) + "\n");
                     }
                     else {
-                        console.log("3");
                         if (Players[appId].players[playerId].socket == undefined) {
                             Players[appId].players[playerId] = myData;
                             var data = {
@@ -96,7 +89,6 @@ try {
                         }
                         else {
                             if (Players[appId].players[playerId].dui != dui) {
-                                console.log("4");
                                 var data = {
                                     result: "3"
                                 };
