@@ -50,18 +50,7 @@ try {
              dui = dt.dui;
              appId = apiKey;
 
-            if (knd == "Add") {
-                //var query = "select id from apps where apiKey= '" + apiKey + "';";
-                //console.log("query: " + query);
-                //con.query(query, function (err, result, fields) {
-                //    if (err) {
-                //        console.log("err: " + err);
-                //    };
-                //    result.forEach((row) => {
-                //        console.log("row.id: " + row.id);
-                //        appId = row.id;
-                //    });
-                //});
+             if (knd == "Add") {
 
                 console.log("appId: "+appId);
                 var myData = {
@@ -69,6 +58,7 @@ try {
                 };
 
                 if (Players[appId] == undefined) {
+                    console.log("1");
                     Players[appId] = { players: [] };
                     Players[appId].players[playerId] = myData;
                     var data = {
@@ -78,6 +68,8 @@ try {
                 }
                 else {
                     if (Players[appId].players[playerId] == undefined) {
+                        console.log("2");
+
                         Players[appId].players[playerId] = myData;
                         var data = {
                             result: "1", Meskind: "Add"
@@ -86,6 +78,8 @@ try {
                     }
                     else {
                         if (Players[appId].players[playerId].socket == undefined) {
+                            console.log("3");
+
                             Players[appId].players[playerId] = myData;
                             var data = {
                                 result: "1", Meskind: "Add"
@@ -94,12 +88,16 @@ try {
                         }
                         else {
                             if (Players[appId].players[playerId].dui != dui) {
+                                console.log("4");
+
                                 var data = {
                                     result: "3", Meskind: "Add"
                                 };
                                 socket.write(JSON.stringify(data) + "\n");
                             }
                             else {
+                                console.log("5");
+
                                 Players[appId].players[playerId] = myData;
                                 var data = {
                                     result: "1", Meskind: "Add"
