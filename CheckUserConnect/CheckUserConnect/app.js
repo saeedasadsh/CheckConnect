@@ -48,20 +48,20 @@ try {
              apiKey = dt.apiKey;
              knd = dt.kind;
              dui = dt.dui;
-             appId = "";
+             appId = apiKey;
 
             if (knd == "Add") {
-                var query = "select id from apps where apiKey= '" + apiKey + "';";
-                console.log("query: " + query);
-                con.query(query, function (err, result, fields) {
-                    if (err) {
-                        console.log("err: " + err);
-                    };
-                    result.forEach((row) => {
-                        console.log("row.id: " + row.id);
-                        appId = row.id;
-                    });
-                });
+                //var query = "select id from apps where apiKey= '" + apiKey + "';";
+                //console.log("query: " + query);
+                //con.query(query, function (err, result, fields) {
+                //    if (err) {
+                //        console.log("err: " + err);
+                //    };
+                //    result.forEach((row) => {
+                //        console.log("row.id: " + row.id);
+                //        appId = row.id;
+                //    });
+                //});
 
                 console.log("appId: "+appId);
                 var myData = {
