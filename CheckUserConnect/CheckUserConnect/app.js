@@ -49,7 +49,7 @@ try {
             console.log(playerId);
             console.log(apiKey);
             console.log(knd);
-            if (knd == "add") {
+            if (knd == "Add") {
                 var query = "select id from apps where apiKey= '" + apiKey + "'";
                 con.query(query, function (err, result, fields) {
                     if (err) throw err;
