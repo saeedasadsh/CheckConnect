@@ -130,7 +130,16 @@ try {
         });
 
         socket.on('disconnect', function (data) {
-            console.log("disconnect: " + playerId);
+            console.log("disconnect in dis: " + playerId);
+        });
+
+        socket.on('close', function (data) {
+            try {
+                console.log("disconnect in close: " + playerId);
+            }
+            catch (e) {
+                console.log("4: " + e.message);
+            }
         });
 
     });
