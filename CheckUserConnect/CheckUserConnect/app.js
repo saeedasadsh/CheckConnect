@@ -52,6 +52,7 @@ try {
 
             if (knd == "Add") {
                 var query = "select id from apps where apiKey= '" + apiKey + "'";
+                console.log("query: " + query);
                 con.query(query, function (err, result, fields) {
                     if (err) throw err;
                     result.forEach((row) => {
